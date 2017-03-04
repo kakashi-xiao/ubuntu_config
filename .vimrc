@@ -13,22 +13,21 @@ Plugin 'VundleVim/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
+" Plugin 'L9'
+Plugin 'scrooloose/nerdcommenter'
 " Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
+" Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
+" Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
-"Plugin 'ascenator/L9', {'name': 'newL9'}
-Plugin 'STL-Syntax'
-Plugin 'https://github.com/Lokaltog/vim-powerline'
-Plugin 'solarized'
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -43,19 +42,10 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
 syntax enable
-if has('gui_running')
-	set background=light
-else
-	set background=dark
-endif
-colorscheme solarized
 let mapleader=','
-filetype on
-filetype plugin on
 " 自定义快捷键
-nmap lb 0
-nmap le $
 vnoremap <Leader>y "+y
 nmap <Leader>p "+p
 nnoremap nw <C-W><C-W>
@@ -71,9 +61,63 @@ set laststatus=2
 set ruler
 set number
 set cursorline
-set cursorcolumn
+"set cursorcolumn
 set hlsearch
 set nowrap
-let g:Powerline_colorscheme='solarized256'
 syntax enable
 syntax on
+
+set expandtab
+set autoindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set softtabstop=4
+set smarttab
+set paste
+
+" NerdComm settings
+" " Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+"
+" " Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+"
+" " Align line-wise comment delimiters flush left instead of following code
+" indentation
+" let g:NERDDefaultAlign = 'left'
+"
+" " Set a language to use its alternate delimiters by default
+" let g:NERDAltDelims_java = 1
+"
+" " Add your own custom formats or override the defaults
+" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+"
+" " Allow commenting and inverting empty lines (useful when commenting a
+" region)
+" let g:NERDCommentEmptyLines = 1
+"
+" " Enable trimming of trailing whitespace when uncommenting
+" let g:NERDTrimTrailingWhitespace = 1
+" Add spaces after comment delimiters by default
+" let g:NERDSpaceDelims = 1
+"
+" " Use compact syntax for prettified multi-line comments
+" let g:NERDCompactSexyComs = 1
+"
+" " Align line-wise comment delimiters flush left instead of following code
+" indentation
+" let g:NERDDefaultAlign = 'left'
+"
+" " Set a language to use its alternate delimiters by default
+" let g:NERDAltDelims_java = 1
+"
+" " Add your own custom formats or override the defaults
+" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+"
+" " Allow commenting and inverting empty lines (useful when commenting a
+" region)
+" let g:NERDCommentEmptyLines = 1
+"
+" " Enable trimming of trailing whitespace when uncommenting
+" let g:NERDTrimTrailingWhitespace = 1
