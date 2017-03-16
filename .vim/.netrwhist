@@ -1,6 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/data1/imagenet/ilsvrc12_val_lmdb'
 let g:netrw_dirhist_2='/data1/imagenet/ilsvrc12_train_lmdb'
 let g:netrw_dirhist_3='/home/shengxiao/workspace/release/bin'
 let g:netrw_dirhist_4='/home/shengxiao/.vim'
+let g:netrw_dirhist_5='/home/shengxiao/yaml-cpp'
+let g:netrw_dirhist_6='/home/shengxiao/ubuntu_config'
+let g:netrw_dirhist_7='/home/shengxiao/workspace/caffe_parallel'

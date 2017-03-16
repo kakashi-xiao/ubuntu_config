@@ -17,6 +17,8 @@ Plugin 'VundleVim/Vundle.vim'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+" Plugin 'Lokaltog/vim-powerline'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
@@ -43,6 +45,7 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable
 let mapleader=','
 " 自定义快捷键
@@ -59,14 +62,19 @@ set ignorecase
 set wildmenu
 set laststatus=2
 set ruler
+set showcmd
 set number
 set cursorline
 "set cursorcolumn
 set hlsearch
+set incsearch
+" 允许光标跨行移动
+set whichwrap+=<,>,h,l
 set nowrap
 syntax enable
 syntax on
-
+set vb t_vb=
+set showmatch
 set expandtab
 set autoindent
 set tabstop=4
@@ -75,7 +83,26 @@ set expandtab
 set softtabstop=4
 set smarttab
 set paste
+" 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
+set mouse=a
+set selection=exclusive
+set selectmode=mouse,key
+" 高亮显示匹配的括号
+set showmatch
+" 匹配括号高亮的时间（单位是十分之一秒）
+set matchtime=1
+" 光标移动到buffer的顶部和底部时保持3行距离
+set scrolloff=3
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Key Shortcut
 
+map <F9> :source ~/.vimrc<CR>
+map <C-A> ggVGY
+map <C-c> "+y
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NerdComm settings
 " " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -121,3 +148,19 @@ let g:NERDCompactSexyComs = 1
 "
 " " Enable trimming of trailing whitespace when uncommenting
 " let g:NERDTrimTrailingWhitespace = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Powerline{
+" set guifont=PowerlineSymbols\ for\ Powerline
+" set encoding=utf-8
+" set nocompatible
+" set t_Co=256
+" let g:Powerline_symbols='unicode'
+" }
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NerdTree{
+map <F3> :NERDTreeMirror<CR>
+map <F3> :NERDTreeToggle<CR>
+" }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
