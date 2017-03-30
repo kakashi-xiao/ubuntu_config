@@ -1,5 +1,6 @@
 import re
 import sys
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 plt.ion()
@@ -10,6 +11,8 @@ if __name__ == '__main__':
         files=sys.argv[1:]
     else:
         files="log1.txt"
+
+    legends=['fix_','float']    
     for filename in files:
         print "==========  Processing "+filename+str(n_figure)+"  =================="
         file=open(filename)
@@ -21,6 +24,7 @@ if __name__ == '__main__':
         test=list()
         accuracy1=list()
         accuracy5=list()
+        accuracy6=list()
         flag=0
         while 1:
             line=file.readline()
@@ -84,10 +88,11 @@ if __name__ == '__main__':
                     accuracy5.append(top5)
 
                     line = file.readline()
-                    index=line.find('loss')
+                    index=line.find('mAP-class2')
                     while (index<0):
                         line = file.readline()
-                        index=line.find('loss')
+                        #  index=line.find('accuracy_top5')
+                        index=line.find('mAP-class2')
                         flag+=1
                         if flag>=10:
                             flag=0
@@ -95,9 +100,26 @@ if __name__ == '__main__':
                             break
                     nums=re.findall(r"\d+\.?\d*",line[index:])
                     if not nums:
-                        top_loss=0
+                        top6=accuracy6[-1]
                     else:
-                        top_loss=float(nums[0])
+                        top6=float(nums[1])
+                    accuracy6.append(top6)
+
+                    #  line = file.readline()
+                    #  index=line.find('mAP-class2')
+                    #  while (index<0):
+                        #  line = file.readline()
+                        #  index=line.find('mAP-class2')
+                        #  flag+=1
+                        #  if flag>=10:
+                            #  flag=0
+                            #  print "=======No Data==========="
+                            #  break
+                    #  nums=re.findall(r"\d+\.?\d*",line[index:])
+                    #  if not nums:
+                        #  top_loss=0
+                    #  else:
+                        #  top_loss=float(nums[0])
                     #accuracy.append(top_loss)
                     #test.append(accuracy)
 
@@ -130,10 +152,13 @@ if __name__ == '__main__':
         plt.sca(ax2)
         plt.plot(iter_test,accuracy1)
         plt.figure(10)
-        plt.plot(iter_test,accuracy1,label=filename)
+        plt.plot(iter_test,accuracy1,label=legends[n_figure-1]+'-mAP-class0')
         plt.legend(loc='upper left')
-        plt.figure(11)
-        plt.plot(iter_test,accuracy5,label=filename)
+        plt.figure(10)
+        plt.plot(iter_test,accuracy5,label=legends[n_figure-1]+'-mAP-class1')
+        plt.legend(loc='upper left')
+        plt.figure(10)
+        plt.plot(iter_test,accuracy6,label=legends[n_figure-1]+'-mAP-class2')
         plt.legend(loc='upper left')
     plt.show()
 while 1:
