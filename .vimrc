@@ -51,7 +51,7 @@ let mapleader=','
 " 自定义快捷键
 vnoremap <Leader>y "+y
 nmap <Leader>p "+p
-nnoremap nw <C-W><C-W>
+nnoremap <Leader>nw <C-W><C-W>
 nnoremap <Leader>lw <C-W>l
 nnoremap <Leader>hw <C-W>h
 nnoremap <Leader>kw <C-W>k
