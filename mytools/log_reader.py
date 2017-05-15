@@ -12,7 +12,7 @@ if __name__ == '__main__':
     else:
         files="log1.txt"
 
-    legends=['fix_','float']    
+    legends=['fix_mean','fix_mean2','fix','float']
     for filename in files:
         print "==========  Processing "+filename+str(n_figure)+"  =================="
         file=open(filename)
@@ -34,12 +34,13 @@ if __name__ == '__main__':
                 break
             index1=line.find('Iteration')
             if index1>=0:
-                index2=line.find('loss')
+                index2=line.find('loss = ')
                 if index2>=0:
                     nums=re.findall(r"\d+\.?\d*",line[index1:])
                     iter=int(nums[0])
-                    loss=float(nums[1])
                     iter_train.append(iter)
+                    nums=re.findall(r"\d+\.?\d*",line[index2:])
+                    loss=float(nums[0])
                     train.append(loss)
                 index3=line.find('Testing net')
                 if index3>=0:
@@ -153,13 +154,14 @@ if __name__ == '__main__':
         plt.plot(iter_test,accuracy1)
         plt.figure(10)
         plt.plot(iter_test,accuracy1,label=legends[n_figure-1]+'-mAP-class0')
-        plt.legend(loc='upper left')
+        plt.legend(loc='lower right')
         plt.figure(10)
         plt.plot(iter_test,accuracy5,label=legends[n_figure-1]+'-mAP-class1')
-        plt.legend(loc='upper left')
+        plt.legend(loc='lower right')
         plt.figure(10)
         plt.plot(iter_test,accuracy6,label=legends[n_figure-1]+'-mAP-class2')
-        plt.legend(loc='upper left')
+        plt.legend(loc='lower right')
+        print legends[n_figure-1]+" bbox_loss: mean="+str(sum(train)/len(train))+" max="+str(max(train[1:]))+" min="+str(min(train[1:]))
     plt.show()
 while 1:
     n=raw_input("Press 'q' to exit")

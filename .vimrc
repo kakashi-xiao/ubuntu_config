@@ -18,6 +18,9 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'L9'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
+" Add maktaba and codefmt to the runtimepath.
+" (The latter must be installed before it can be used.)
+" ...
 " Plugin 'Lokaltog/vim-powerline'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
@@ -162,5 +165,15 @@ let g:NERDCompactSexyComs = 1
 " NerdTree{
 map <F3> :NERDTreeMirror<CR>
 map <F3> :NERDTreeToggle<CR>
+" }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Clang-format{
+" #set equalprg = clang - format
+noremap <Leader>= mi:% !clang-format-3.6<CR>'i
+noremap <Leader>q :qa!<CR>
+autocmd FileType cmake,c,cpp,java,php autocmd BufWritePre <buffer> %s/\s\+$//e
+inoremap <c-i> <ESC>mi:% !clang-format-3.6<CR>'ii
 " }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

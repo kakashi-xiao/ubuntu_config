@@ -88,6 +88,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias clang-format='clang-format-3.6'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -115,3 +116,5 @@ fi
 
 export PATH="$PATH:/usr/local/openmpi/bin"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/openmpi/lib/"
+export TERM=xterm-256color
+export PYTHONPATH=$PYTHONPATH:/home/shengxiao/workspace/caffe_parallel/python
