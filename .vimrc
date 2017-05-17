@@ -81,7 +81,7 @@ set showmatch
 set expandtab
 set autoindent
 set tabstop=4
-set shiftwidth=4
+set shiftwidth=2
 set expandtab
 set softtabstop=4
 set smarttab
@@ -96,6 +96,7 @@ set showmatch
 set matchtime=1
 " 光标移动到buffer的顶部和底部时保持3行距离
 set scrolloff=3
+set ruler
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Shortcut
 
@@ -177,3 +178,12 @@ autocmd FileType cmake,c,cpp,java,php autocmd BufWritePre <buffer> %s/\s\+$//e
 inoremap <c-i> <ESC>mi:% !clang-format-3.6<CR>'ii
 " }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vimdiff{
+map <silent> <leader>2 :diffget 2<CR> :diffupdate<CR>
+map <silent> <leader>3 :diffget 3<CR> :diffupdate<CR>
+map <silent> <leader>4 :diffget 4<CR> :diffupdate<CR>
+" }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
