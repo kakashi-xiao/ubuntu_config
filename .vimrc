@@ -85,7 +85,7 @@ set shiftwidth=2
 set expandtab
 set softtabstop=4
 set smarttab
-set paste
+" set paste
 " 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
 set mouse=a
 set selection=exclusive
@@ -104,6 +104,21 @@ map <F9> :source ~/.vimrc<CR>
 map <C-A> ggVGY
 map <C-c> "+y
 
+inoremap ' ''<ESC>i
+inoremap " ""<ESC>i
+inoremap ( ()<ESC>i
+inoremap [ []<ESC>i
+inoremap { {<CR>}<ESC>O
+
+func SkipPair()  
+    if getline('.')[col('.') - 1] == ')' || getline('.')[col('.') - 1] == ']' || getline('.')[col('.') - 1] == '"' || getline('.')[col('.') - 1] == "'" || getline('.')[col('.') - 1] == '}'  
+        return "\<ESC>la"  
+    else  
+        return "\t"  
+    endif  
+endfunc  
+" 将tab键绑定为跳出括号  
+inoremap <TAB> <c-r>=SkipPair()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -172,10 +187,10 @@ map <F3> :NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Clang-format{
 " #set equalprg = clang - format
-noremap <Leader>= mi:% !clang-format-3.6<CR>'i
+noremap <Leader>= mi:% !clang-format-3.9<CR>'i
 noremap <Leader>q :qa!<CR>
 autocmd FileType cmake,c,cpp,java,php autocmd BufWritePre <buffer> %s/\s\+$//e
-inoremap <c-i> <ESC>mi:% !clang-format-3.6<CR>'ii
+" inoremap <c-i> <ESC>mi:% !clang-format-3.6<CR>'ii
 " }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -187,3 +202,16 @@ map <silent> <leader>4 :diffget 4<CR> :diffupdate<CR>
 " }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ctags{
+map <F5> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR> :TlistUpdate<CR>
+imap <F5> <ESC>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR> :TlistUpdate<CR>
+set tags=tags
+set tags+=./tags "add current directory's generated tags file
+set tags+=~/arm/linux-2.6.24.7/tags "add new tags file(刚刚生成tags的路径，在ctags -R 生成tags文件后，不要将tags移动到别的目录，否则ctrl+］时，会提示找不到源码文件)
+
+set tags+=./tags "表示在当前工作目录下搜索tags文件
+set tags+=~/arm/linux-2.6.24.7/tags "表示在搜寻tags文件的时候，也要搜寻~/arm/linux-2.6.24.7/文件夹下的tags文件。
+" }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
